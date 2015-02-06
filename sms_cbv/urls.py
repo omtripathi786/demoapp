@@ -6,5 +6,5 @@ from sms import views
 
 
 urlpatterns = patterns('',
-                       url(r'^$', views.user_login, name='user_login')
+        url(r'^$', views.user_login, name='user_login')
 )
