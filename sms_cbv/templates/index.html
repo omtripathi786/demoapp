@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Demoapp{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+            <fieldset>
+                <legend class="text-center">Fill Your Information</legend>
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Name</label>
+
+                        <div class="col-md-9">
+                            {{form.name}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Roll Number</label>
+
+                        <div class="col-md-9">
+                            {{form.roll_number}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Email</label>
+
+                        <div class="col-md-9">
+                            {{form.email}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Courses</label>
+
+                        <div class="col-md-9">
+                            {{form.courses}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            <input type="hidden" name="action" value="{{ action }}">
+                            <button type="submit" class="btn btn-primary">{{ action }}</button>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+{% if student_list %}
+<div class="panel panel-primary datacon">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Student Management System</div>
+    <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Roll Number</th>
+            <th>Email</th>
+            <th>Courses</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in student_list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.roll_number}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.courses}}</td>
+            <td><a href="/sms?sid={{student.id}}" class="btn btn-info btn-xs"><span
+                    class="glyphicon glyphicon-edit"></span> Edit</a>
+                <a class="btn btn-danger btn-xs" href="/sms?delete={{student.id}}">
+                    <span class="glyphicon glyphicon-remove"></span> Del</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}
+

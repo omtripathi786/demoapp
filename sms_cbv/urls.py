@@ -6,5 +6,6 @@ from sms_cbv import views
 
 
 urlpatterns = patterns('',
-        url(r'^$', views.user_login, name='user_login')
+                       url(r'^$', views.UserLogin.as_view()),
+                       #url(r'^sms/$', views.user_login)
 )

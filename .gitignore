@@ -10,4 +10,3 @@
 *.idea
 *session
 #*snowball/wsgi.py
-
