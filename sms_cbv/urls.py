@@ -2,7 +2,7 @@ __author__ = 'Om Tripathi'
 
 from django.conf.urls import url, patterns
 
-from sms import views
+from sms_cbv import views
 
 
 urlpatterns = patterns('',
