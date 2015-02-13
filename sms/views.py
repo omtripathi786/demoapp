@@ -13,7 +13,7 @@ from sms.serializers import UserSerializer, GroupSerializer
 
 def index(request):
     if request.user.is_authenticated():
-        template = loader.get_template('index.html')
+        template = loader.get_template('sms/index.html')
         sid = request.GET.get('sid', None)
         did = request.GET.get('delete', None)
         msg = ''
@@ -62,7 +62,7 @@ def index(request):
 
 def user_login(request):
     msg = ''
-    template = loader.get_template('login.html')
+    template = loader.get_template('sms/login.html')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']

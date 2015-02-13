@@ -1,0 +1,12 @@
+*.pyc
+*.scssc
+*.sassc
+*.jscomment
+*.sublime-workspace
+*.sublime-project
+*/logs
+*snowball/local_settings.py
+*.sqlite3
+*.idea
+*session
+#*snowball/wsgi.py
