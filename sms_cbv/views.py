@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
 from django.contrib.auth import authenticate
-from django.template import loader
+from sms_cbv.forms import UserForm, UserProfileForm
+from django.template import loader, RequestContext
 
 
 class UserLogin(View):
@@ -37,6 +38,34 @@ class UserRegistration(View):
 
     def get(self, request, *args, **kwargs):
         msg = ''
-        return HttpResponse(render(request, self.template_name, {'msg': msg}))
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+        context = {
+            'msg': msg,
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return HttpResponse(render(request, self.template_name, context))
 
+    def post(self, request, *args, **kwargs):
+        msg = ''
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            registered = True
+        else:
+            print user_form.errors, profile_form.errors
+
+        context = {
+            'msg': msg,
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return HttpResponse(render(request, self.template_name, context))
 

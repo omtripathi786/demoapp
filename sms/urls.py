@@ -13,7 +13,7 @@ urlpatterns = patterns('',
                        url(r'^$', views.user_login, name='user_login'),
                        url(r'^logout/$', views.user_logout, name='user_logout'),
                        url(r'^sms/$', views.index, name='index'),
-                       url(r'^sms/register/$', views.register, name='register'),
+                       url(r'^register/$', views.register, name='register'),
                        url(r'^', include(router.urls)),
                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 )

@@ -83,7 +83,7 @@ def user_login(request):
 
 def register(request):
     msg = None
-    template = loader.get_template('register.html')
+    template = loader.get_template('sms/register.html')
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
