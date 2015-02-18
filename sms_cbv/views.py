@@ -27,6 +27,8 @@ class UserLogin(View):
                 msg = 'done'
             else:
                 msg = 'fail'
+        else:
+            msg = 'fail'
         return HttpResponse(render(request, self.template_name, {'msg': msg}))
 
 
@@ -49,6 +51,7 @@ class UserRegistration(View):
 
     def post(self, request, *args, **kwargs):
         msg = ''
+        registered = False
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
@@ -60,12 +63,13 @@ class UserRegistration(View):
             profile.save()
             registered = True
         else:
-            print user_form.errors, profile_form.errors
+            user_form.errors, profile_form.errors
 
         context = {
             'msg': msg,
             'user_form': user_form,
-            'profile_form': profile_form
+            'profile_form': profile_form,
+            'registered' : registered
         }
         return HttpResponse(render(request, self.template_name, context))
 
