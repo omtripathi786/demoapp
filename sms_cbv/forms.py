@@ -6,9 +6,8 @@ from django.contrib.auth.models import User
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control input-lg',
                                                                  'placeholder': 'Password'}))
-    email = forms.EmailField(max_length=75, required=True, widget=forms.TextInput(attrs={'class':
-                                                                                             'form-control input-lg',
-                                                                                         'placeholder': 'Email'}))
+    email = forms.EmailField(max_length=75, required=True,
+                             widget=forms.TextInput(attrs={'class':'form-control input-lg','placeholder': 'Email'}))
 
     class Meta:
         model = User

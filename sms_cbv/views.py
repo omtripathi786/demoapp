@@ -21,7 +21,6 @@ class UserLogin(View):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-        print user
         if user:
             if user.is_active:
                 msg = 'done'

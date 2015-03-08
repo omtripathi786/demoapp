@@ -54,6 +54,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'sms_cbv.email-auth.EmailBackend',
+)
+
 ROOT_URLCONF = 'demoapp.urls'
 
 WSGI_APPLICATION = 'demoapp.wsgi.application'
